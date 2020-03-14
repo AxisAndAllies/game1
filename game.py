@@ -18,3 +18,12 @@ pieces = {
         "strength": 25
     }
 }
+
+def move(owner, num):
+    pass
+
+def reinforce(owner, num):
+    pass
+
+def next_turn():
+    pass
