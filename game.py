@@ -4,17 +4,19 @@ nodes = {
     3: [1,2]
 }
 
+players = ['a','b']
+
 pieces = {
     1: {
-        "owner": 'a',
+        "player_index": 0,
         "strength": 22
     },
     2: {
-        "owner": 'a',
+        "player_index": 0,
         "strength": 30
     },
     3: {
-        "owner": 'b',
+        "player_index": 1,
         "strength": 25
     }
 }
