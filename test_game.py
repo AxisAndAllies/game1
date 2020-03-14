@@ -1,6 +1,14 @@
 from game import Game
 
-def test_game():
+def test_attack():
+    g = Game()
+    UNITS = 3
+    FROM_TERRITORY = 1
+    TO_TERRITORY = 2
+
+
+
+def test_move():
     g = Game()
 
     UNITS = 3
@@ -28,4 +36,4 @@ def test_game():
     if original_units_a - new_units_a != UNITS:
         raise ValueError("Didn't move {} units".format(UNITS))
 
-test_game()
+test_move()
