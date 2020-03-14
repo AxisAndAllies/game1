@@ -3,6 +3,11 @@ from risk import Risk
 
 app = Flask(__name__)
 
+only_game = Risk()
+
+def render(risk: Risk):
+    return risk.state
+
 @app.route('/game/<int:game_id>')
 def find_game(game_id):
     msg = f"Game {game_id} doesn't exist yet!!"

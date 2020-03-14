@@ -7,6 +7,11 @@ class Player:
 class Risk:
     def __init__(self):
         self.players = dict()
+        self.state = {
+            'pieces': {
+                
+            }
+        }
     
     def add_player(self, name):
         self.players[name] = Player(name)
