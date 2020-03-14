@@ -12,9 +12,9 @@ def find_game(game_id):
     msg = f"Game {game_id} doesn't exist yet!!"
     return msg
     
-@app.route('/state')
+@app.route('/state', methods=["GET"])
 def game_state():
-    return only_game.state
+    return jsonify(only_game.get_state())
 
 @app.route('/move', methods=["POST"])
 def move():
@@ -23,7 +23,7 @@ def move():
     node_index_from = data["node_index_from"]
     node_index_to = data["node_index_to"]
     only_game.move(num, node_index_from, node_index_to)
-    return 'moved.'
+    return jsonify(only_game.get_state())
 
 @app.route('/end_turn', methods=["POST"])
 def end_turn():
@@ -36,4 +36,4 @@ def reinforce():
     num = data["num"]
     node_index = data["node_index"]
     only_game.reinforce(num, node_index)
-    return 'reinforced.'
+    return jsonify(only_game.get_state())

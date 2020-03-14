@@ -27,6 +27,14 @@ class Game:
         }
     }
 
+    def get_state(self):
+        return {
+            self.nodes,
+            self.players,
+            self.player_territories,
+            self.pieces
+        }
+
 
 
     def move(self, num, node_index_from, node_index_to):
