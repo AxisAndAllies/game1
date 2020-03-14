@@ -1,4 +1,6 @@
 from flask import Flask
+from .risk import Risk
+
 app = Flask(__name__)
 
 @app.route('/game/<int:game_id>')
