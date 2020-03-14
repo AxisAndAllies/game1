@@ -22,10 +22,10 @@ def test_game():
     print('Original units:', original_units_a, original_units_b)
     print('New units:', new_units_a, new_units_b)
 
-    if original_units_a + original_units_b != new_units_b + new_units_b:
+    if original_units_a + original_units_b != new_units_a + new_units_b:
         raise ValueError('Units must be conserved')
     
-    if new_units_a - original_units_a != UNITS:
+    if original_units_a - new_units_a != UNITS:
         raise ValueError("Didn't move {} units".format(UNITS))
 
 test_game()
