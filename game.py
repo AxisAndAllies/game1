@@ -35,7 +35,7 @@ class Game:
         to_owner = self.pieces[node_index_to]["player_index"]
         if to_owner != player_index:
             # attack
-            pass
+            self._resolve_attack(num, node_index_to)
         else:
             self.reinforce(player_index, num, node_index_to)
         
@@ -47,6 +47,8 @@ class Game:
 
     # player index
     cur_player = 0
+
+
 
     def next_turn(self):
         self.cur_turn = (self.cur_turn + 1) % len(self.players)
@@ -60,3 +62,7 @@ class Game:
     def _check_player_owns(self, player_index, node_index):
         if self.pieces[node_index]["player_index"] != player_index:
             raise Exception("does not belong to this player.")
+
+    
+    def _resolve_attack(self, attacking_num, target_node_index):
+        target_node_index
