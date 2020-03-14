@@ -19,6 +19,9 @@ def test_attack():
     print('Original units:', original_units_a, original_units_b)
     print('New units:', new_units_a, new_units_b)
 
+    if original_units_a + original_units_b <= new_units_a + new_units_b:
+        raise ValueError('Some units have to die!')
+
 
 
 def test_move():
