@@ -68,8 +68,16 @@ class Game:
     def _resolve_attack(self, attacking_num, target_node_index):
         self.pieces[target_node_index]["strength"]
 
+    def _check_valid_unit_strength(self, num):
+        if num < 0:
+            raise Exception("negative units")
+
     def _add_node_strength(self, node_index, num):
+        self._check_valid_node(node_index)
+        self._check_valid_unit_strength(num)
         self.pieces[node_index]["strength"] += num
 
     def _substract_node_strength(self, node_index, num):
+        self._check_valid_node(node_index)
+        self._check_valid_unit_strength(num)
         self.pieces[node_index]["strength"] -= num
