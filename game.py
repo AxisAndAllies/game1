@@ -24,7 +24,10 @@ pieces = {
 def move(owner, num):
     pass
 
-def reinforce(owner, num):
+def reinforce(owner, num, node_index):
+    if node_index not in nodes:
+        raise Exception("bad node")
+    nodes[node_index]
     pass
 
 # player index
