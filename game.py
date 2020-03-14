@@ -35,12 +35,12 @@ class Game:
             raise Exception("not enough pieces to move")
 
         to_owner = self.pieces[node_index_to]["player_index"]
+        self._substract_node_strength(node_index_from, num)
         if to_owner != player_index:
             # attack
             self._resolve_attack(num, node_index_to)
         else:
             self.reinforce(num, node_index_to)
-            self._substract_node_strength(node_index_from, num)
         
     def reinforce(self, num, node_index):
         player_index = self.cur_player

@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request, jsonify
 from risk import Risk
 
 app = Flask(__name__)
@@ -15,11 +15,12 @@ def find_game(game_id):
     
 @app.route('/state')
 def game_state():
-    return 'Hello, World!'
+    return only_game.game_state
 
 @app.route('/move', methods=["POST"])
 def move():
-
+    data = request.json
+    data[""]
     return 'moved.'
 
 @app.route('/end_turn', methods=["POST"])
