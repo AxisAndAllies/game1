@@ -1,5 +1,8 @@
-from flask import Flask, request, jsonify
+import json
+from flask import Flask, request
 from game import Game
+
+
 app = Flask(__name__)
 
 only_game = Game()
@@ -15,17 +18,21 @@ def find_game(game_id):
     
 @app.route('/state', methods=["GET"])
 def game_state():
-    return jsonify(only_game.get_state())
+    return json.dumps(only_game.get_state())
 
 
 @app.route('/move', methods=["POST"])
 def move():
     data = request.json
-    num = data["num"]
-    node_index_from = data["node_index_from"]
-    node_index_to = data["node_index_to"]
-    only_game.move(num, node_index_from, node_index_to)
-    return jsonify(only_game.get_state())
+    num = _check_valid_num(data['num'])
+    node_index_from = _check_valid_node(data["from"])
+    node_index_to = _check_valid_node(data["to"])
+    try:
+        only_game.move(num, node_index_from, node_index_to)
+    except Exception as e:
+        return str(e), 400
+    
+    return json.dumps(only_game.get_state())
 
 
 @app.route('/end_turn', methods=["POST"])
@@ -33,11 +40,19 @@ def end_turn():
     only_game.next_turn()
     return 'ended.'
 
+def _check_valid_num(stuff):
+    return int(stuff)
 
-@app.route('/reinforce', methods=["POST"])
+def _check_valid_node(stuff):
+    return int(stuff)
+
+@app.route('/add', methods=["POST"])
 def reinforce():
     data = request.json
-    num = data["num"]
-    node_index = data["node_index"]
-    only_game.reinforce(num, node_index)
-    return jsonify(only_game.get_state())
+    num = _check_valid_num(data['num'])
+    node_index = _check_valid_node(data["to"])
+    try:
+        only_game.reinforce(num, node_index)
+    except Exception as e:
+        return str(e), 400
+    return json.dumps(only_game.get_state())
