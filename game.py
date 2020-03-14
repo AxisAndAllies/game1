@@ -29,7 +29,9 @@ class Game:
         self._check_valid_node(node_index_from)
         self._check_valid_node(node_index_to)
         self._check_player_owns(player_index, node_index_from)
-        if 
+        if self.pieces[node_index_from]["strength"] >= num:
+            raise Exception("not enough pieces to move")
+
         to_owner = self.pieces[node_index_to]["player_index"]
         if to_owner != player_index:
             # attack
