@@ -2,20 +2,16 @@ import json
 from flask import Flask, request
 from game import Game
 
-
 app = Flask(__name__)
-
 only_game = Game()
-
-# def render(risk: Risk):
-#     return risk.state
 
 
 @app.route('/game/<int:game_id>', methods=["GET"])
 def find_game(game_id):
     msg = f"Game {game_id} doesn't exist yet!!"
     return msg
-    
+
+
 @app.route('/state', methods=["GET"])
 def game_state():
     return json.dumps(only_game.get_state())
@@ -31,7 +27,7 @@ def move():
         only_game.move(num, node_index_from, node_index_to)
     except Exception as e:
         return str(e), 400
-    
+
     return json.dumps(only_game.get_state())
 
 
@@ -40,11 +36,14 @@ def end_turn():
     only_game.next_turn()
     return 'ended.'
 
+
 def _check_valid_num(stuff):
     return int(stuff)
 
+
 def _check_valid_node(stuff):
     return int(stuff)
+
 
 @app.route('/add', methods=["POST"])
 def reinforce():
