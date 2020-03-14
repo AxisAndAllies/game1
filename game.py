@@ -27,5 +27,9 @@ def move(owner, num):
 def reinforce(owner, num):
     pass
 
+# player index
+cur_turn = 0
+
 def next_turn():
-    pass
+    cur_turn = (cur_turn + 1)% len(players)
+    print(f"turn {cur_turn}")
