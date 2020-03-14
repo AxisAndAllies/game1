@@ -29,6 +29,8 @@ class Game:
         self._check_valid_node(node_index_from)
         self._check_valid_node(node_index_to)
         self._check_player_owns(player_index, node_index_from)
+
+        # must leave at least 1 behind
         if self.pieces[node_index_from]["strength"] <= num:
             raise Exception("not enough pieces to move")
 
@@ -65,19 +67,28 @@ class Game:
             raise Exception("does not belong to this player.")
 
     
-    def _resolve_attack(self, attacking_num, target_node_index):
-        self.pieces[target_node_index]["strength"]
+    def _resolve_attack(self, attacking_num, target_node_index) -> bool:
+        '''
+        returns whether attacker won.
+        '''
+        a = attacking_num
+        b = self.pieces[target_node_index]["strength"]
+        self._substract_node_strength(target_node_index, min(a,b))
+        attacking_num -= min(a,b)
+        return attacking_num > 0
 
-    def _check_valid_unit_strength(self, num):
+    def _check_valid_unit_strength(self, num: int):
         if num < 0:
             raise Exception("negative units")
+        if not isinstance(num, int):
+            raise Exception("invalid unit strength type")
 
-    def _add_node_strength(self, node_index, num):
+    def _add_node_strength(self, node_index, num: int):
         self._check_valid_node(node_index)
         self._check_valid_unit_strength(num)
         self.pieces[node_index]["strength"] += num
 
-    def _substract_node_strength(self, node_index, num):
+    def _substract_node_strength(self, node_index, num: int):
         self._check_valid_node(node_index)
         self._check_valid_unit_strength(num)
         self.pieces[node_index]["strength"] -= num
