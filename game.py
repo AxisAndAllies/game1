@@ -38,12 +38,13 @@ class Game:
             self._resolve_attack(num, node_index_to)
         else:
             self.reinforce(num, node_index_to)
+            self._substract_node_strength(node_index_from, num)
         
     def reinforce(self, num, node_index):
         player_index = self.cur_player
         self._check_valid_node(node_index)
         self._check_player_owns(player_index, node_index)
-        self.pieces[node_index]["strength"] += num
+        self._add_node_strength(node_index, num)
 
     # player index
     cur_player = 0
@@ -65,4 +66,10 @@ class Game:
 
     
     def _resolve_attack(self, attacking_num, target_node_index):
-        target_node_index
+        self.pieces[target_node_index]["strength"]
+
+    def _add_node_strength(self, node_index, num):
+        self.pieces[node_index]["strength"] += num
+
+    def _substract_node_strength(self, node_index, num):
+        self.pieces[node_index]["strength"] -= num
