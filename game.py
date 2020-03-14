@@ -37,7 +37,7 @@ class Game:
             # attack
             self._resolve_attack(num, node_index_to)
         else:
-            self.reinforce(player_index, num, node_index_to)
+            self.reinforce(num, node_index_to)
         
     def reinforce(self, num, node_index):
         player_index = self.cur_player
