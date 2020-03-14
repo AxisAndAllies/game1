@@ -7,6 +7,11 @@ class Game:
 
     players = ['a','b']
 
+    player_territories = {
+        0: [1,2],
+        1: [3]
+    }
+
     pieces = {
         1: {
             "player_index": 0,
