@@ -21,14 +21,17 @@ pieces = {
     }
 }
 
-def move(owner, num):
-    pass
-
-def reinforce(owner, num, node_index):
+def move(player_index, num, node_index_from, node_index_to):
+    if node_index_from not in nodes:
+        raise Exception("bad from node")
+    if node_index_to not in nodes:
+        raise Exception("bad from node")
+def reinforce(player_index, num, node_index):
     if node_index not in nodes:
         raise Exception("bad node")
-    nodes[node_index]
-    pass
+    if pieces[node_index]["player_index"] != player_index:
+        raise Exception("does not belong to this player.")
+    pieces[node_index]["strength"] += num
 
 # player index
 cur_turn = 0
