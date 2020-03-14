@@ -21,16 +21,16 @@ pieces = {
     }
 }
 
+
+
 def move(player_index, num, node_index_from, node_index_to):
-    if node_index_from not in nodes:
-        raise Exception("bad from node")
-    if node_index_to not in nodes:
-        raise Exception("bad from node")
+    _check_valid_node(node_index_from)
+    _check_valid_node(node_index_to)
+    _check_player_owner(player_index, node_index_from)
+    
 def reinforce(player_index, num, node_index):
-    if node_index not in nodes:
-        raise Exception("bad node")
-    if pieces[node_index]["player_index"] != player_index:
-        raise Exception("does not belong to this player.")
+    _check_valid_node(node_index)
+    _check_player_owner(player_index, node_index)
     pieces[node_index]["strength"] += num
 
 # player index
@@ -39,3 +39,12 @@ cur_turn = 0
 def next_turn():
     cur_turn = (cur_turn + 1)% len(players)
     print(f"turn {cur_turn}")
+
+
+def _check_valid_node(node_index):
+    if node_index not in nodes:
+        raise Exception("bad to node")
+
+def _check_player_owner(player_index, node_index, is_owner = True):
+    if pieces[node_index]["player_index"] != player_index:
+        raise Exception("does not belong to this player.")
