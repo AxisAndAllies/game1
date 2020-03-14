@@ -19,8 +19,8 @@ def test_game():
     new_units_a = g.pieces[FROM_TERRITORY]['strength']
     new_units_b = g.pieces[TO_TERRITORY]['strength']
     
-    print(original_units_a, original_units_b)
-    print(new_units_a, new_units_b)
+    print('Original units:', original_units_a, original_units_b)
+    print('New units:', new_units_a, new_units_b)
 
     if original_units_a + original_units_b != new_units_b + new_units_b:
         raise ValueError('Units must be conserved')
