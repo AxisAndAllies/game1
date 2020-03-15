@@ -80,10 +80,7 @@ class Game:
             raise Exception("negative units")
 
     def _add_node_strength(self, node_index, num: int):
-        self._check_valid_node(node_index)
-        self._check_valid_unit_strength(num)
         self.pieces[node_index]["strength"] += num
 
     def _substract_node_strength(self, node_index, num: int):
-        self._check_valid_node(node_index)
         self.pieces[node_index]["strength"] -= num
