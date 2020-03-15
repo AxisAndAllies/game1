@@ -52,8 +52,8 @@ class Game:
         self._add_node_strength(node_index, num)
 
     def next_turn(self):
-        self.cur_turn = (self.cur_turn + 1) % len(self.players)
-        print(f"turn {self.cur_turn}")
+        self.cur_player = (self.cur_player+ 1) % len(self.players)
+        print(f"turn {self.cur_player}")
 
     def _check_valid_node(self, node_index):
         if node_index not in self.graph:
@@ -71,7 +71,12 @@ class Game:
         b = self.pieces[target_node_index]["strength"]
         self._substract_node_strength(target_node_index, min(a, b))
         attacking_num -= min(a, b)
-        return attacking_num > 0
+        
+        won = attacking_num > 0
+        if won:
+            self.pieces[target_node_index]['player_index'] = self.cur_player
+            self._add_node_strength(target_node_index, attacking_num)
+        return won
 
     def _check_valid_unit_strength(self, num: int):
         if not isinstance(num, int):
