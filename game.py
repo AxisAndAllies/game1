@@ -41,6 +41,8 @@ class Game:
         player_index = self.cur_player
         self._check_valid_node(node_index_from)
         self._check_valid_node(node_index_to)
+        if node_index_to not in self.nodes[node_index_from]:
+            raise Exception("Territories are not connected!")
         self._check_player_owns(player_index, node_index_from)
 
         # must leave at least 1 behind
