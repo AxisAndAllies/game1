@@ -20,11 +20,11 @@ def game_state():
 @app.route('/move', methods=["POST"])
 def move():
     data = request.json
-    num = _check_valid_num(data['num'])
+    unit_count = _check_valid_unit_count(data['unit_count'])
     node_index_from = _check_valid_node(data["from"])
     node_index_to = _check_valid_node(data["to"])
     try:
-        only_game.move(num, node_index_from, node_index_to)
+        only_game.move(unit_count, node_index_from, node_index_to)
     except Exception as e:
         return str(e), 400
 
@@ -37,7 +37,7 @@ def end_turn():
     return 'ended.'
 
 
-def _check_valid_num(stuff):
+def _check_valid_unit_count(stuff):
     return int(stuff)
 
 
@@ -48,10 +48,10 @@ def _check_valid_node(stuff):
 @app.route('/add', methods=["POST"])
 def reinforce():
     data = request.json
-    num = _check_valid_num(data['num'])
+    unit_count = _check_valid_unit_count(data['unit_count'])
     node_index = _check_valid_node(data["to"])
     try:
-        only_game.reinforce(num, node_index)
+        only_game.reinforce(unit_count, node_index)
     except Exception as e:
         return str(e), 400
     return json.dumps(only_game.get_state())
