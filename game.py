@@ -36,7 +36,7 @@ class Game:
         }
     
 
-    def _check_connected(from_index, to_index):
+    def _check_connected(self, from_index, to_index):
         if to_index not in self.graph[from_index]:
             raise Exception("Territories are not connected!")
 
