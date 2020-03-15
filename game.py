@@ -91,10 +91,10 @@ class Game:
         return attacking_num > 0
 
     def _check_valid_unit_strength(self, num: int):
-        if num < 0:
-            raise Exception("negative units")
         if not isinstance(num, int):
             raise Exception("invalid unit strength type")
+        if num < 0:
+            raise Exception("negative units")
 
     def _add_node_strength(self, node_index, num: int):
         self._check_valid_node(node_index)
