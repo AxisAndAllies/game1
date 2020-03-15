@@ -36,13 +36,15 @@ class Game:
         }
     
 
+    def _check_connected(from_index, to_index):
+        if to_index not in self.graph[from_index]:
+            raise Exception("Territories are not connected!")
 
     def move(self, num, node_index_from, node_index_to):
         player_index = self.cur_player
         self._check_valid_node(node_index_from)
         self._check_valid_node(node_index_to)
-        if node_index_to not in self.graph[node_index_from]:
-            raise Exception("Territories are not connected!")
+        self._check_connected(node_index_from, node_index_to)
         self._check_player_owns(player_index, node_index_from)
 
         # must leave at least 1 behind
