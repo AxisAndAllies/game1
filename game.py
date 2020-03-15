@@ -1,5 +1,5 @@
 class Game:
-    nodes = {
+    graph = {
         1: [2,3],
         2: [1,3],
         3: [1,2]
@@ -29,7 +29,7 @@ class Game:
 
     def get_state(self):
         return {
-            'nodes': self.nodes,
+            'graph': self.graph,
             'players': self.players,
             'player_territories': self.player_territories,
             'pieces': self.pieces
@@ -41,7 +41,7 @@ class Game:
         player_index = self.cur_player
         self._check_valid_node(node_index_from)
         self._check_valid_node(node_index_to)
-        if node_index_to not in self.nodes[node_index_from]:
+        if node_index_to not in self.graph[node_index_from]:
             raise Exception("Territories are not connected!")
         self._check_player_owns(player_index, node_index_from)
 
@@ -74,7 +74,7 @@ class Game:
 
 
     def _check_valid_node(self, node_index):
-        if node_index not in self.nodes:
+        if node_index not in self.graph:
             raise Exception("bad node")
 
     def _check_player_owns(self, player_index, node_index):
