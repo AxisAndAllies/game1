@@ -86,3 +86,4 @@ class Game:
 
     def _substract_node_strength(self, node_index, num: int):
         self._check_valid_node(node_index)
+        self.pieces[node_index]["strength"] -= num
